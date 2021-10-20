@@ -57,10 +57,27 @@
             border-radius: 20px;
         }
        
+        #pagination{
+            margin-top: 50px;
+            padding-left: 10%;
+        }
         
+        #pagination > button{
+            height: 50px;
+            width: 100px;
+            background-color:black;
+            color: white;
+            font-size: 24px;
+            border-radius: 20px;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+
     </style>
 </head>
 <body>
+    var start = 0;
+    var end = 10;
     <div id="navBar">
         <a href="login.html">Login</a>
         <a href="home.html">Home</a>
@@ -72,6 +89,16 @@
         <button id="sbtn">Search</button>
     </div>
 
+    <div id="pagination">
+        <button id="next">Prev</button>
+        <button id="next">Current</button>
+        <button id="next">Next</button>
+    </div>
+
+    <div id="container">
+
+    </div>
+
     <script type="text/javascript">
      window.addEventListener("load",()=>{
          const btn = document.getElementById("sbtn");
@@ -80,8 +107,42 @@
 
      const searchUser = ()=>{
         var user =  document.getElementById("username").value;
-        console.log(user);
+        createUserCard(user);
+        createPageButton(user);
      }
+
+     async function createUserCard(user){
+         var res =  await fetch(`https://api.github.com/users/${user}/repos`);
+         var res = await res.json()
+            displayUsers(res);
+     }
+
+     function displayUsers(res){
+        for(let i=0;i<res.length;i++){
+            var data = res[i];
+            var datause = data.owner;
+            console.log(datause)
+                const div = document.createElement("div");
+                const name = document.createElement("p");
+                const id = document.createElement("p");
+                const nodeid = document.createElement("p");
+                const fullname = document.createElement("p");
+                const url = document.createElement("p");
+                div.style.border = "1px solid black";
+                div.style.margin = "20px";
+                div.style.padding = "5px";
+
+                name.textContent = "Name : "+ datause.login;
+                id.textContent = "User id :  "+datause.id;
+                nodeid.textContent = " User node id: "+datause.node_id;
+                fullname.textContent = "User Full name : "+data.full_name;
+                url.textContent = " User Avatar url : "+datause.avatar_url;
+                div.append(name,id,nodeid,fullname,url);
+                document.getElementById("container").append(div);
+        }
+     }
+
+
     </script>
     
 </body>
