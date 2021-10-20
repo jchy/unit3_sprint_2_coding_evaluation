@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #navBar{
+            text-decoration: none;
+            font-size: 16px;
+            padding : 10px;
+            background-color: black;
+            color: white;
+            border: 1px solid black;
+        }
+        #navBar > a{
+            background-color: red;
+            color: white;
+            border: 1px solid black;
+            font-size: 20px;
+            text-decoration: none;
+            padding : 5px;
+            border-radius:5px;
+        }
+        #log-in{
+            border: 1px solid black;
+            height: 400px;
+            width: 400px;
+            margin-left: 10%;
+            margin-top:80px;
+            border-radius: 20px;
+        }
+        #log-in > input{
+            height: 50px;
+            width: 300px;
+            margin: 20px;
+            background-color: blue;
+            color: black;
+            font-size: 24px;
+            border-radius: 20px;
+            padding-left: 10px;
+        }
+
+        h1{
+            margin-left: 10%;
+            margin-top: 50px;
+        }
+        #btn{
+            height: 50px;
+            width: 200px;
+            margin-left: 50px;
+            background-color: black;
+            color: white;
+            font-size: 24px;
+            border-radius: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="navBar">
+        <a href="login.html">Login</a>
+        <a href="home.html">Home</a>
+    </div>
+
+    
+    <div id="log-in">
+        <h1 >Please Login</h1>
+        <input type="text" id="username" placeholder="Enter username"><br>
+        <input type="text" id="password" placeholder="Enter you password">
+        <button id="btn">Log in</button>
+    </div>
+
+    <script>
+        var arr =[];
+        window.addEventListener("load",()=>{
+            const btn = document.getElementById("btn");
+            btn.addEventListener("click",userCredential); 
+        });
+
+        const userCredential = ()=>{
+           var username =document.getElementById("username").value;
+           var password =document.getElementById("password").value;
+
+           const payload = {
+               user : username,
+               pass : password
+           }
+           arr.push(payload);
+           localStorage.setItem("userDat", JSON.stringify(arr));
+        }
+
+    </script>
+</body>
+</html>
