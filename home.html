@@ -24,15 +24,15 @@
             padding : 5px;
             border-radius:5px;
         }
-        #log-in{
+        #srch{
             border: 1px solid black;
-            height: 400px;
+            height: 300px;
             width: 400px;
             margin-left: 10%;
             margin-top:80px;
             border-radius: 20px;
         }
-        #log-in > input{
+        #srch > input{
             height: 50px;
             width: 300px;
             margin: 20px;
@@ -47,7 +47,7 @@
             margin-left: 10%;
             margin-top: 50px;
         }
-        #btn{
+        #sbtn{
             height: 50px;
             width: 200px;
             margin-left: 50px;
@@ -56,6 +56,7 @@
             font-size: 24px;
             border-radius: 20px;
         }
+       
         
     </style>
 </head>
@@ -64,35 +65,24 @@
         <a href="login.html">Login</a>
         <a href="home.html">Home</a>
     </div>
-
-    
-    <div id="log-in">
-        <h1 >Please Login</h1>
-        <input type="text" id="username" placeholder="Enter username"><br>
-        <input type="text" id="password" placeholder="Enter you password">
-        <button id="btn">Log in</button>
+    <h1>Welcome to Home Page </h1>
+    <div id="srch">
+        <h1 >Search for users</h1>
+        <input type="text" id="username" placeholder="Search users on github"><br>
+        <button id="sbtn">Search</button>
     </div>
 
-    <script>
-        var arr =[];
-        window.addEventListener("load",()=>{
-            const btn = document.getElementById("btn");
-            btn.addEventListener("click",userCredential); 
-        });
+    <script type="text/javascript">
+     window.addEventListener("load",()=>{
+         const btn = document.getElementById("sbtn");
+         btn.addEventListener("click",searchUser);
+     })
 
-        const userCredential = ()=>{
-           var username =document.getElementById("username").value;
-           var password =document.getElementById("password").value;
-
-           const payload = {
-               user : username,
-               pass : password
-           }
-           arr.push(payload);
-           localStorage.setItem("userDat", JSON.stringify(arr));
-           window.location.replace('home.html');
-        }
-
+     const searchUser = ()=>{
+        var user =  document.getElementById("username").value;
+        console.log(user);
+     }
     </script>
+    
 </body>
 </html>
